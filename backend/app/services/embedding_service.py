@@ -1,6 +1,7 @@
 import re
 from collections import Counter
 
+
 # Lightweight in-memory document store
 document_store = {}
 
@@ -9,9 +10,11 @@ def split_document(text, chunk_size=500):
     """
     Split extracted PDF text into manageable chunks.
     """
+
     chunks = []
 
     for i in range(0, len(text), chunk_size):
+
         chunk = text[i:i + chunk_size].strip()
 
         if chunk:
@@ -24,15 +27,20 @@ def tokenize(text):
     """
     Convert text into simple lowercase words.
     """
-    return re.findall(r"\b[a-zA-Z0-9]+\b", text.lower())
+
+    return re.findall(
+        r"\b[a-zA-Z0-9]+\b",
+        text.lower()
+    )
 
 
 def create_vector_store(document_id, chunks):
     """
     Store document chunks in memory.
 
-    This replaces the heavy SentenceTransformer + ChromaDB
-    system so the application can run on low-memory servers.
+    This lightweight implementation avoids
+    SentenceTransformers, PyTorch and ChromaDB,
+    allowing deployment on low-memory servers.
     """
 
     document_store[document_id] = chunks
@@ -44,8 +52,8 @@ def search_document(query, n_results=3, document_id=None):
     """
     Lightweight relevance search.
 
-    Scores chunks based on the number of words from the
-    user's question that appear in each chunk.
+    Scores chunks based on the number of words
+    from the user's question that appear in each chunk.
     """
 
     query_words = set(tokenize(query))
@@ -53,11 +61,15 @@ def search_document(query, n_results=3, document_id=None):
     if not query_words:
         return []
 
-    # If a document ID is provided, search only that document.
     if document_id is not None:
-        chunks = document_store.get(document_id, [])
+
+        chunks = document_store.get(
+            document_id,
+            []
+        )
+
     else:
-        # Search across the currently stored documents.
+
         chunks = []
 
         for document_chunks in document_store.values():
@@ -83,9 +95,10 @@ def search_document(query, n_results=3, document_id=None):
             score += word_counts.get(word, 0)
 
         if score > 0:
-            scored_chunks.append((score, chunk))
+            scored_chunks.append(
+                (score, chunk)
+            )
 
-    # Highest relevance first
     scored_chunks.sort(
         key=lambda item: item[0],
         reverse=True
@@ -96,9 +109,8 @@ def search_document(query, n_results=3, document_id=None):
         for score, chunk in scored_chunks[:n_results]
     ]
 
-    # If no exact keyword matches were found,
-    # return the first few chunks so Gemini still
-    # has document context.
+    # If no exact keyword matches are found,
+    # provide the first few chunks as context.
     if not results:
         results = chunks[:n_results]
 

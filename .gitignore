@@ -17,3 +17,16 @@ chroma_db/
 
 # Uploaded documents
 backend/app/uploads/
+# Backend database files
+*.db
+*.sqlite3
+
+# Chroma vector database
+backend/chroma_db/
+
+# Local uploaded PDFs
+backend/app/uploads/
+
+# Python cache
+__pycache__/
+*.py[cod]
