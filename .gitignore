@@ -1,7 +1,19 @@
 node_modules/
 venv/
+.venv/
 .env
+.env.*
 __pycache__/
 uploads/
 *.pyc
 dist/
+
+*.py[cod]
+*.pyo
+*.db
+*.sqlite3
+# Chroma vector database
+chroma_db/
+
+# Uploaded documents
+backend/app/uploads/
