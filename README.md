@@ -71,7 +71,7 @@ DocMind-AI
 ## Clone Repository
 
 ```bash
-git clone <your-github-link>
+git clone [<your-github-link>](https://github.com/thiru791/URIHT-DocMind-AI.git)
 ```
 
 ## Backend
@@ -118,7 +118,7 @@ npm run dev
 
 # Screenshots
 
-(Add screenshots here if desired.)
+check in main folder 1.jpge,2,3....
 
 ---
 
@@ -139,6 +139,6 @@ npm run dev
 
 Department of Computer Science and Engineering
 
-Rajalakshmi Engineering College
+
 
 For DEVS Technical Board Recruitment 2026.
