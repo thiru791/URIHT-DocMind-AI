@@ -6,5 +6,13 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+
+    {
+      name: 'force-exit-after-build',
+      apply: 'build',
+      closeBundle() {
+        setTimeout(() => process.exit(0), 0)
+      },
+    },
   ],
 })
