@@ -1,144 +1,62 @@
-# ☁️ URIHT DocMind AI
+# URIHT DocMind AI
 
-An AI-powered document analysis platform that allows users to upload PDF documents and interact with them using natural language.
+URIHT DocMind AI is a web application for working with PDF documents using natural language.
 
-Built for DEVS REC Technical Board Recruitment 2026.
+A user can upload a PDF, extract its text, generate a summary, and ask questions about the uploaded document. The application uses a React frontend, a FastAPI backend, and Google Gemini for document-based responses.
 
----
+## Features
 
-# Features
+- PDF upload through the web interface
+- Text extraction from PDF documents
+- Automatic document summary
+- Question answering based on uploaded document content
+- Relevant document sections are selected before sending context to the AI
+- Separate frontend and backend applications
+- Responsive interface
+- Local development and cloud deployment support
 
-✅ Beautiful animated landing page
+## How it works
 
-✅ Drag & Drop PDF Upload
+The application follows a simple flow:
 
-✅ AI-powered document analysis
+1. A PDF is uploaded from the frontend.
+2. The backend extracts the text from the document.
+3. The extracted text is divided into smaller sections.
+4. The sections are stored for document search.
+5. When the user asks a question, the backend finds relevant sections from the document.
+6. The selected content is sent to Google Gemini along with the user's question.
+7. The generated response is returned to the frontend.
 
-✅ Chat with uploaded PDF
+## Project structure
 
-✅ Interactive typing animation
-
-✅ Smooth UI animations
-
-✅ Responsive glassmorphism design
-
----
-
-# Tech Stack
-
-## Frontend
-
-- React.js
-- Vite
-- Axios
-- CSS3
-
-## Backend
-
-- FastAPI
-- Python
-- LangChain
-- Google Gemini API
-- PyPDF
-- FAISS Vector Database
-
----
-
-# Project Structure
-
-```
-DocMind-AI
+```text
+URIHT-DocMind-AI/
 │
-├── frontend
-│   ├── src
-│   ├── components
-│   ├── pages
-│   └── services
-│
-├── backend
-│   ├── uploads
-│   ├── app.py
-│   ├── models.py
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── routes.py
+│   │   ├── db/
+│   │   ├── models/
+│   │   ├── services/
+│   │   │   ├── ai_service.py
+│   │   │   ├── embedding_service.py
+│   │   │   ├── pdf_service.py
+│   │   │   └── chat_service.py
+│   │   └── uploads/
+│   ├── main.py
 │   └── requirements.txt
 │
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── styles/
+│   ├── package.json
+│   └── vite.config.js
+│
+├── screenshots/
+│
+├── .gitignore
 └── README.md
-```
-
----
-
-# Installation
-
-## Clone Repository
-
-```bash
-git clone [<your-github-link>](https://github.com/thiru791/URIHT-DocMind-AI.git)
-```
-
-## Backend
-
-```bash
-cd backend
-
-python -m venv venv
-
-venv\Scripts\activate
-
-pip install -r requirements.txt
-
-uvicorn app:app --reload
-```
-
----
-
-## Frontend
-
-```bash
-cd frontend
-
-npm install
-
-npm run dev
-```
-
----
-
-# Usage
-
-1. Open homepage
-
-2. Click Start Analysis
-
-3. Upload any PDF
-
-4. Wait until upload completes
-
-5. Ask questions about the uploaded document
-
----
-
-# Screenshots
-
-check in main folder 1.jpge,2,3....
-
----
-
-# Future Improvements
-
-- Conversation history
-- Multiple PDF support
-- Authentication
-- Voice interaction
-- Export chat
-- Cloud deployment
-
----
-
-# Developed By
-
-**Thiru Selvam R K**
-
-Department of Computer Science and Engineering
-
-
-
-For DEVS Technical Board Recruitment 2026.
